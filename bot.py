@@ -20,6 +20,15 @@ from aiogram.types import (
     InputMediaPhoto,
 )
 
+# в начале bot.py
+import os, subprocess, sys
+try:
+    commit = subprocess.check_output(["git","rev-parse","--short","HEAD"], text=True).strip()
+except Exception:
+    commit = "unknown"
+print(f"[BOOT] ICEradar commit={commit} file={__file__} cwd={os.getcwd()} py={sys.executable}")
+
+
 # ========= ENV =========
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
